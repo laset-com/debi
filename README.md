@@ -1,41 +1,5 @@
 # Debian Network Reinstall Script
 
-[General description in English ↓](#introduction)
-
-## VPS 网络重装 Debian 11 脚本
-
-**暂不支持 Oracle Linux 作为原系统。创建新机器时请选择 Ubuntu 20.04 或 18.04 系统模板。**
-
-下载脚本：
-
-```
-curl -fLO https://raw.githubusercontent.com/bohanyang/debi/master/debi.sh && chmod a+rx debi.sh
-```
-
-运行脚本：
-
-```
-sudo ./debi.sh --cdn --network-console --ethx --bbr --user root --password <新系统用户密码>
-```
-
-* `--bbr` 开启 BBR
-* `--ethx` 网卡名称使用传统形式，如 `eth0` 而不是 `ens3`
-* `--cloud-kernel` 安装占用空间较小的 `cloud` 内核，但可能会导致 UEFI 启动的机器（如 Oracle、Azure 及 Hyper-V、Google Cloud 等）VNC 黑屏。BIOS 启动的普通 VPS 则没有此问题。
-* 默认时区为 UTC，添加 `--timezone Asia/Shanghai` 可使用中国时区。
-* 默认使用 Debian 官方 CDN 镜像源（deb.debian.org），添加 `--china` 可使用阿里云镜像源。
-
-如果没有报错可以重启：
-
-```
-sudo shutdown -r now
-```
-
-约 30 秒后可以尝试 SSH 登录 `installer` 用户，密码与之前设置的相同。如果成功连接，可以按 Ctrl-A 然后再按 4 监控安装日志。安装完成后会自动重启进入新系统。
-
-
-### [Oracle 自动获取 IPv6](https://github.com/bohanyang/debi/wiki/%E7%94%B2%E9%AA%A8%E6%96%87%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96-IPv6)
-### [Oracle 纯 IPv6 网络（无公网 IPv4）下安装方法](https://github.com/bohanyang/debi/wiki/%E7%94%B2%E9%AA%A8%E6%96%87%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BA%AF-IPv6-%E7%BD%91%E7%BB%9C%EF%BC%88%E6%97%A0%E5%85%AC%E7%BD%91-IPv4%EF%BC%89%E4%B8%8B%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95)
-
 ## Introduction
 
 This script is written to reinstall a VPS/virtual machine to minimal Debian 11.
@@ -68,7 +32,7 @@ This script is written to reinstall a VPS/virtual machine to minimal Debian 11.
 
 Download the script with curl:
 
-    curl -fLO https://raw.githubusercontent.com/bohanyang/debi/master/debi.sh
+    curl -fLO https://raw.githubusercontent.com/laset-com/debi/master/debi.sh
     
     # for IPv6-only machines
     curl -fLO --resolve 'raw.githubusercontent.com:443:2a04:4e42::133' https://raw.githubusercontent.com/bohanyang/debi/master/debi.sh
