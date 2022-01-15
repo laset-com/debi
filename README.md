@@ -46,7 +46,7 @@ or wget:
 Run the script under root or using sudo:
 
     chmod a+rx debi.sh
-    sudo ./debi.sh
+    sudo ./debi.sh --hostname arm.MYDOMAIN.com --user root --password PASSWORD --sudo-with-password --ethx --bbr --cloud-kernel --timezone Europe/Zurich
 
 By default, an admin user `debian` with sudo privilege will be created during the installation. Use `--user root` if you prefer.
 
